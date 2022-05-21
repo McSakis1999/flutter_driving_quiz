@@ -49,10 +49,10 @@ class _QuizState extends State<Quiz> {
                 decoration: BoxDecoration(
                   borderRadius:
                       const BorderRadius.all(Radius.circular(10)), //here
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.background,
                   boxShadow: [
                     BoxShadow(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).colorScheme.primary,
                         offset: const Offset(0, 0),
                         blurRadius: 10.0)
                   ],
@@ -84,7 +84,8 @@ class _QuizState extends State<Quiz> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 40),
                           primary: Colors.white,
-                          backgroundColor: Theme.of(context).primaryColor,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.tertiary,
                           shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(0)))),
@@ -101,7 +102,7 @@ class _QuizState extends State<Quiz> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 40),
                         primary: Colors.white,
-                        backgroundColor: Colors.green,
+                        backgroundColor: Theme.of(context).colorScheme.tertiary,
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(0))),
                       ),

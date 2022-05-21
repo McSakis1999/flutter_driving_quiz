@@ -29,7 +29,7 @@ class _timerState extends State<timer> {
       const Duration(seconds: 1),
       (_) {
         if (_seconds > 0) {
-          setState(() => _seconds--);
+          if (mounted) setState(() => _seconds--);
         } else {
           //telos quiz
         }

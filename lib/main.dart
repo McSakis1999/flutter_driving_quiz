@@ -6,35 +6,29 @@ import 'theme/themeConstants.dart';
 import 'theme/themeManager.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: lightTheme,
-    darkTheme: darkTheme,
-    themeMode: _themeManager.themeMode,
-    title: 'Σήματα Οδήγησης',
-    home: HomePage(),
-  ));
+  runApp(MyApp());
 }
 
 ThemeManager _themeManager = ThemeManager();
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _HomePageState extends State<HomePage> {
-  @override
-  void dispose() {
-    _themeManager.removeListener(themeListener);
-    super.dispose();
-  }
-
+class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     _themeManager.addListener(themeListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _themeManager.removeListener(themeListener);
+    super.dispose();
   }
 
   themeListener() {
@@ -45,14 +39,45 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeManager.themeMode,
+      title: 'Σήματα Οδήγησης',
+      home: HomePage(),
+    );
+  }
+}
+
+/*
+void main() {
+  runApp(MaterialApp(
+    theme: lightTheme,
+    darkTheme: darkTheme,
+    themeMode: _themeManager.themeMode,
+    title: 'Σήματα Οδήγησης',
+    home: HomePage(),
+  ));
+} */
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('First Route'),
         actions: [
           Switch(
               value: _themeManager.themeMode == ThemeMode.dark,
-              onChanged: (value) {
-                _themeManager.toggleTheme(value);
+              onChanged: (newValue) {
+                _themeManager.toggleTheme(newValue);
               })
         ],
       ),
@@ -61,9 +86,9 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(30.0),
                 bottomLeft: Radius.circular(30.0),
               ),
@@ -74,10 +99,10 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
+                Icon(
                   Icons.menu_book_sharp,
                   size: 60,
-                  color: Colors.white,
+                  color: Theme.of(context).backgroundColor,
                 ),
                 ElevatedButton(
                   child: const Text('Open route'),

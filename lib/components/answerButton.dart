@@ -30,9 +30,11 @@ class _AnswerBtnState extends State<AnswerBtn> {
         margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.background,
           border: Border.all(
-            color: widget.flag ? Colors.orange : Colors.blue,
+            color: widget.flag
+                ? Colors.orange
+                : Theme.of(context).colorScheme.outline,
           ),
           borderRadius: BorderRadius.circular(20.0),
         ),

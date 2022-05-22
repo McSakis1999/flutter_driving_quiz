@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 int value = 0;
 
 class AnswerBtn extends StatefulWidget {
+  AnswerBtn(this.answerText, this.index);
   final String answerText;
   final int index;
-  AnswerBtn(this.answerText, this.index);
-  bool flag = false;
 
   @override
   State<AnswerBtn> createState() => _AnswerBtnState();
@@ -18,12 +17,8 @@ class _AnswerBtnState extends State<AnswerBtn> {
     return InkWell(
       onTap: () => {
         setState(() {
-          widget.flag = true;
-        })
-        /*
-        setState(() {
           value = widget.index;
-        }) */
+        })
       },
       child: Container(
         padding: const EdgeInsets.all(15.0),
@@ -32,7 +27,7 @@ class _AnswerBtnState extends State<AnswerBtn> {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
           border: Border.all(
-            color: widget.flag
+            color: value == widget.index
                 ? Colors.orange
                 : Theme.of(context).colorScheme.outline,
           ),

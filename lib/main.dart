@@ -49,17 +49,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-/*
-void main() {
-  runApp(MaterialApp(
-    theme: lightTheme,
-    darkTheme: darkTheme,
-    themeMode: _themeManager.themeMode,
-    title: 'Σήματα Οδήγησης',
-    home: HomePage(),
-  ));
-} */
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -75,6 +64,8 @@ class _HomePageState extends State<HomePage> {
         title: const Text('First Route'),
         actions: [
           Switch(
+              activeThumbImage: const AssetImage('assets/icons/moon.png'),
+              inactiveThumbImage: const AssetImage('assets/icons/sun.png'),
               value: _themeManager.themeMode == ThemeMode.dark,
               onChanged: (newValue) {
                 _themeManager.toggleTheme(newValue);

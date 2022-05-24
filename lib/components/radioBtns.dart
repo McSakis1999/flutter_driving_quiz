@@ -23,14 +23,13 @@ class _RadioBtnsState extends State<RadioBtns> {
                 onChanged: (value) {
                   setState(() {
                     currentAnswer = value.toString();
-                    print(currentAnswer);
                   });
                 },
               ),
               const SizedBox(
                 width: 10,
               ),
-              Text(answer.A_text)
+              Flexible(child: Text(answer.A_text))
             ],
           )
       ],

@@ -12,10 +12,11 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   //Variables
-  int _questionIndex = 0;
   final int _totalQuestions = 30;
-  int value = 0;
-  int btnIndex = 0;
+  int _questionIndex = 0;
+  List answerCatalog = [];
+
+  //int value = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,32 @@ class _QuizState extends State<Quiz> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      child: const Text('Skip'),
-                      style: OutlinedButton.styleFrom(
+                  if (questions.length > 1) ...[
+                    Expanded(
+                      child: OutlinedButton(
+                        child: const Text('Skip'),
+                        style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 40),
+                            primary: Colors.white,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.tertiary,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(0)))),
+                        onPressed: () {
+                          var _tempQuestion = questions[_questionIndex];
+                          questions.remove(questions[_questionIndex]);
+                          questions.add(_tempQuestion);
+                          print(questions.length);
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: OutlinedButton(
+                        child: const Text('Submit'),
+                        style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 40),
                           primary: Colors.white,
@@ -62,29 +85,37 @@ class _QuizState extends State<Quiz> {
                               Theme.of(context).colorScheme.tertiary,
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(0)))),
-                      onPressed: () {
-                        _questionIndex--;
-                        print(_questionIndex);
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: OutlinedButton(
-                      child: const Text('Submit'),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 40),
-                        primary: Colors.white,
-                        backgroundColor: Theme.of(context).colorScheme.tertiary,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0))),
+                                  BorderRadius.all(Radius.circular(0))),
+                        ),
+                        onPressed: () {
+                          questions.remove(questions[_questionIndex]);
+                          print(questions.length);
+                          setState(() {});
+                        },
                       ),
-                      onPressed: () {
-                        _questionIndex++;
-                      },
                     ),
-                  ),
+                  ] else if (questions.length == 1) ...[
+                    Expanded(
+                      child: OutlinedButton(
+                        child: const Text('Submit'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 40),
+                          primary: Colors.white,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.tertiary,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0))),
+                        ),
+                        onPressed: () {
+                          questions.remove(questions[_questionIndex]);
+                          print(questions.length);
+                          setState(() {});
+                        },
+                      ),
+                    )
+                  ],
                 ] /*2 buttons*/,
               ),
               const SizedBox(height: 20),

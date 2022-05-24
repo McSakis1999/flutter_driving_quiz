@@ -29,11 +29,13 @@ class _QuestionCardState extends State<QuestionCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-                'assets/${widget.question.Raw_category}.${widget.question.id}.png'),
-          ),
+          if (widget.question.hasImage == true) ...[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  'assets/${widget.question.Raw_category}.${widget.question.id}.png'),
+            )
+          ],
           const SizedBox(height: 15),
           Row(
             children: [

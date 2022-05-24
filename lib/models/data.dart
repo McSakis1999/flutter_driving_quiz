@@ -1,4 +1,6 @@
 class Answer {
+  static int _nextId = 0;
+  int id = -1;
   String text = '';
   bool isTrue = false;
 
@@ -7,12 +9,17 @@ class Answer {
     return text;
   }
 
+  int get A_id {
+    return id;
+  }
+
   bool get A_isTrue {
     return isTrue;
   }
 
   //constructor
   Answer(String text, bool isTrue) {
+    this.id = ++_nextId;
     this.text = text;
     this.isTrue = isTrue;
   }
@@ -31,7 +38,11 @@ class Question {
     return text;
   }
 
-  String get Q_category {
+  String? get Q_category {
+    return _categories[category];
+  }
+
+  String get Raw_category {
     return category;
   }
 
@@ -52,7 +63,7 @@ class Question {
   }
 }
 
-final _categories = const {"1": "Όργανα του οχήματος"};
+final _categories = {"-1": "Δεν βρέθηκε κατηγορια", "1": "Όργανα του οχήματος"};
 
 var questions = [
   Question(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/data.dart';
-import '../components/answerButton.dart';
+import '../components/questionCard.dart';
 import '../components/timer.dart';
 
 class Quiz extends StatefulWidget {
@@ -14,7 +14,7 @@ class _QuizState extends State<Quiz> {
   //Variables
   int _questionIndex = 0;
   final int _totalQuestions = 30;
-  int value = 0; // test gia apantiseis
+  int value = 0;
   int btnIndex = 0;
 
   @override
@@ -42,34 +42,8 @@ class _QuizState extends State<Quiz> {
                 ],
               ) /* time & num of questions */,
               const SizedBox(height: 15),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.all(Radius.circular(10)), //here
-                  color: Theme.of(context).colorScheme.background,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).colorScheme.primary,
-                        offset: const Offset(0, 0),
-                        blurRadius: 10.0)
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset('assets/1.1.png'),
-                    ),
-                    Text(questions[_questionIndex].Q_text),
-                    for (var answer in questions[_questionIndex].Q_answers)
-                      AnswerBtn(answer.A_text, btnIndex++)
-                  ],
-                ),
-              )
+              // card
+              QuestionCard(questions[_questionIndex], _questionIndex)
             ],
           ),
           Column(

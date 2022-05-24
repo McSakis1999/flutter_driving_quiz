@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-int value = 0;
+int isSelected = -100;
 
 class AnswerBtn extends StatefulWidget {
   AnswerBtn(this.answerText, this.index);
@@ -17,7 +17,7 @@ class _AnswerBtnState extends State<AnswerBtn> {
     return InkWell(
       onTap: () => {
         setState(() {
-          value = widget.index;
+          isSelected = widget.index;
         })
       },
       child: Container(
@@ -27,7 +27,7 @@ class _AnswerBtnState extends State<AnswerBtn> {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
           border: Border.all(
-            color: value == widget.index
+            color: isSelected == widget.index
                 ? Colors.orange
                 : Theme.of(context).colorScheme.outline,
           ),

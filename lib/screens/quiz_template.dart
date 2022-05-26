@@ -69,7 +69,6 @@ class _QuizState extends State<Quiz> {
                           var _tempQuestion = questions[_questionIndex];
                           questions.remove(questions[_questionIndex]);
                           questions.add(_tempQuestion);
-                          print(questions.length);
                           setState(() {});
                         },
                       ),
@@ -89,7 +88,6 @@ class _QuizState extends State<Quiz> {
                         ),
                         onPressed: () {
                           questions.remove(questions[_questionIndex]);
-                          print(questions.length);
                           setState(() {});
                         },
                       ),
@@ -110,7 +108,6 @@ class _QuizState extends State<Quiz> {
                         ),
                         onPressed: () {
                           questions.remove(questions[_questionIndex]);
-                          print(questions.length);
                           setState(() {});
                         },
                       ),

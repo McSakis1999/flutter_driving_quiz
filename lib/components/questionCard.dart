@@ -32,8 +32,7 @@ class _QuestionCardState extends State<QuestionCard> {
           if (widget.question.hasImage == true) ...[
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                  'assets/${widget.question.Raw_category}.${widget.question.id}.png'),
+              child: Image.asset(widget.question.Q_imagePath),
             )
           ],
           const SizedBox(height: 15),

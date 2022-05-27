@@ -4,7 +4,8 @@ import '../components/questionCard.dart';
 import '../components/timer.dart';
 
 class Quiz extends StatefulWidget {
-  const Quiz({Key? key}) : super(key: key);
+  List questions = [];
+  Quiz({Key? key, required this.questions}) : super(key: key);
 
   @override
   State<Quiz> createState() => _QuizState();
@@ -44,7 +45,7 @@ class _QuizState extends State<Quiz> {
               ) /* time & num of questions */,
               const SizedBox(height: 15),
               // card
-              QuestionCard(questions[_questionIndex], _questionIndex)
+              QuestionCard(widget.questions[_questionIndex], _questionIndex)
             ],
           ),
           Column(
@@ -52,7 +53,7 @@ class _QuizState extends State<Quiz> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  if (questions.length > 1) ...[
+                  if (widget.questions.length > 1) ...[
                     Expanded(
                       child: OutlinedButton(
                         child: const Text('Skip'),
@@ -66,9 +67,10 @@ class _QuizState extends State<Quiz> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(0)))),
                         onPressed: () {
-                          var _tempQuestion = questions[_questionIndex];
-                          questions.remove(questions[_questionIndex]);
-                          questions.add(_tempQuestion);
+                          var _tempQuestion = widget.questions[_questionIndex];
+                          widget.questions
+                              .remove(widget.questions[_questionIndex]);
+                          widget.questions.add(_tempQuestion);
                           setState(() {});
                         },
                       ),
@@ -87,12 +89,13 @@ class _QuizState extends State<Quiz> {
                                   BorderRadius.all(Radius.circular(0))),
                         ),
                         onPressed: () {
-                          questions.remove(questions[_questionIndex]);
+                          widget.questions
+                              .remove(widget.questions[_questionIndex]);
                           setState(() {});
                         },
                       ),
                     ),
-                  ] else if (questions.length == 1) ...[
+                  ] else if (widget.questions.length == 1) ...[
                     Expanded(
                       child: OutlinedButton(
                         child: const Text('Submit'),
@@ -107,7 +110,8 @@ class _QuizState extends State<Quiz> {
                                   BorderRadius.all(Radius.circular(0))),
                         ),
                         onPressed: () {
-                          questions.remove(questions[_questionIndex]);
+                          widget.questions
+                              .remove(widget.questions[_questionIndex]);
                           setState(() {});
                         },
                       ),

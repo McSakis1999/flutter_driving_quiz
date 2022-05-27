@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_driving_quiz/components/radioBtns.dart';
+import 'package:flutter_driving_quiz/models/data.dart';
 import 'package:flutter_driving_quiz/theme/themeConstants.dart';
 import 'package:flutter_driving_quiz/theme/themeManager.dart';
 import 'screens/quiz_template.dart';
@@ -101,7 +102,9 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Quiz()),
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Quiz(questions: generateQuiz(listData))),
                     );
                   },
                 ),

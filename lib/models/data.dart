@@ -86,7 +86,7 @@ class Question {
   }
 }
 
-final _categories = {
+final Map<String, String> _categories = {
   "-1": "Δεν βρέθηκε κατηγορια",
   "1": "ΤΑ ΚΥΡΙΑ ΟΡΓΑΝΑ ΤΟΥ ΟΧΗΜΑΤΟΣ ΚΑΙ ΤΑ ΧΕΙΡΙΣΤΗΡΙΑ ΣΤΟ ΧΩΡΟ ΟΔΗΓΗΣΕΩΣ",
   "2": "Η ΕΓΚΑΤΑΣΤΑΣΗ ΣΤΗ ΘΕΣΗ ΤΟΥ ΟΔΗΓΟΥ",
@@ -114,7 +114,7 @@ final _categories = {
 };
 // Question('2', true, '', [Answer('', false), Answer('', false), Answer('', false)]),
 
-List c1 = [
+List<Question> c1 = [
   Question(
       '1',
       false,
@@ -254,7 +254,7 @@ List c1 = [
             false)
       ]),
 ];
-List c2 = [
+List<Question> c2 = [
   Question('2', true, 'Η νεκρή γωνία είναι µια περιοχή:', [
     Answer('Μη ορατή από τη θέση του οδηγού µέσω των καθρεπτών.', true),
     Answer('Ορατή µέσω των καθρεπτών.', false),
@@ -322,7 +322,7 @@ List c2 = [
       ]),
 ];
 // Σήμανση (Μέχρι ερώτηση 87 του βιβλίου)
-List c3 = [
+List<Question> c3 = [
   Question('3', true,
       'Τι πρέπει να κάνετε βλέποντας αυτό το σήµα σε άλλη θέση πλην κόμβου:', [
     Answer(
@@ -1100,7 +1100,7 @@ List c3 = [
 **/
 ];
 // Διασταυρώσεις (Μέχρι ερώτηση 22 του βιβλίου)
-List c4 = [
+List<Question> c4 = [
   Question(
       '4',
       true,
@@ -1234,7 +1234,7 @@ List c4 = [
   Question('4', true, 'Όταν λειτουργούν τα φανάρια υπερισχύουν των πινακίδων:',
       [Answer('ΝΑΙ', true), Answer('ΟΧΙ', false)]),
 ];
-List c5 = [
+List<Question> c5 = [
   Question(
       '5', true, 'Φθάνοντας πίσω από αυτό το σχολικό λεωφορείο σε στάση:', [
     Answer('Σταµατάτε σε κάθε περίπτωση.', false),
@@ -1400,7 +1400,7 @@ List c5 = [
             true)
       ]),
 ];
-List c6 = [
+List<Question> c6 = [
   Question(
     '6',
     true,
@@ -1651,27 +1651,23 @@ List c6 = [
   ),
 ];
 
-List listData = [c1, c2, c3, c4, c5, c6];
+List<List<Question>> listData = [c1, c2, c3, c4, c5, c6];
 
-// Removes questions from the original list - needs to be fixed!!!
-dynamic generateQuiz(templistData) {
+// Generates a quiz but getting 5 random questions from each category
+List<Question> generateQuiz(templistData) {
   var random = new Random();
-  var questions = [];
-  for (List list in listData) {
-    print(list.length);
-  }
-  print('-');
-  for (List list in templistData) {
+  var questions = <Question>[];
+  List<List<Question>> cloneList = List.generate(
+      templistData.length, (index) => List.from(templistData[index]));
+  //var cloneList = [...templistData];
+  //var cloneList = new List.from(templistData);
+
+  for (List<Question> list in cloneList) {
     for (var i = 0; i <= 4; i++) {
       var randInt = random.nextInt(list.length);
       questions.add(list[randInt]);
       list.remove(list[randInt]);
     }
   }
-
-  for (List list in listData) {
-    print(list.length);
-  }
-
   return questions;
 }

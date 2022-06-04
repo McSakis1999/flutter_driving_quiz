@@ -19,11 +19,22 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Container(
+                      color: Theme.of(context).colorScheme.background,
+                      padding: const EdgeInsets.all(15),
+                      child: const Image(
+                        image: const AssetImage(
+                            'assets/carIcons/026-car pedals.png'),
+                        height: 50,
+                      ))),
+              const SizedBox(height: 15),
               Text(
                 'Κατηγορία X',
                 style: Theme.of(context).textTheme.headline6,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               Row(
                 children: const [
                   Icon(Icons.assignment_turned_in_outlined),

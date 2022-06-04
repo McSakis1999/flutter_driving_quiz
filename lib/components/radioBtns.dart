@@ -29,9 +29,15 @@ class _RadioBtnsState extends State<RadioBtns> {
               const SizedBox(
                 width: 10,
               ),
-              Flexible(child: Text(answer.A_text))
+              Flexible(child: Text(answer.A_text)),
+              const SizedBox(
+                height: 40,
+              )
             ],
-          )
+          ),
+        const SizedBox(
+          height: 10,
+        )
       ],
     );
   }

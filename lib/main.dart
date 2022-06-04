@@ -86,6 +86,8 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(5.0),
           child: Container(
             decoration: BoxDecoration(
+                border: Border.all(
+                    color: Theme.of(context).colorScheme.primary, width: 0.4),
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(30.0)),
                 color: Theme.of(context).colorScheme.background),
@@ -118,9 +120,19 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              const Image(
-                                  image: const AssetImage(
-                                      'assets/icons/open-book.png')),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Container(
+                                  color:
+                                      Theme.of(context).colorScheme.background,
+                                  padding: const EdgeInsets.all(15),
+                                  child: const Image(
+                                    image: const AssetImage(
+                                        'assets/carIcons/021-manual book.png'),
+                                    height: 70,
+                                  ),
+                                ),
+                              ),
                               const SizedBox(
                                 height: 16,
                               ),
@@ -181,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 60),
-                  FlutterLogo(
+                  const FlutterLogo(
                     size: 80,
                   ),
                   const SizedBox(height: 20),

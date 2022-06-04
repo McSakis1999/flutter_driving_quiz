@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String currentAnswer = "1"; // kano to id string giati exei thema
+String currentAnswer = "0"; // kano to id string giati exei thema
 
 class RadioBtns extends StatefulWidget {
   RadioBtns(this.answers);

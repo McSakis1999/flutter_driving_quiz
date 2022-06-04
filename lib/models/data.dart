@@ -84,6 +84,14 @@ class Question {
     this.text = text;
     this.answers = answers;
   }
+  bool checkIfTrue(String answer_id) {
+    for (Answer answer in this.answers) {
+      if (answer.A_id.toString() == answer_id) {
+        return answer.A_isTrue ?? false;
+      }
+    }
+    return false;
+  }
 }
 
 final Map<String, String> _categories = {

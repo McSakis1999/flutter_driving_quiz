@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_driving_quiz/components/categoryInkwell.dart';
 import 'package:flutter_driving_quiz/components/radioBtns.dart';
 import 'package:flutter_driving_quiz/models/data.dart';
 import 'package:flutter_driving_quiz/theme/themeConstants.dart';
@@ -62,8 +63,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
       appBar: AppBar(
-        title: const Text('First Route'),
+        toolbarHeight: 80,
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+        title: Text(
+          'Σήματα Οδήγησης',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         actions: [
           Switch(
               activeThumbImage: const AssetImage('assets/icons/moon.png'),
@@ -74,45 +81,117 @@ class _HomePageState extends State<HomePage> {
               })
         ],
       ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
+      body: SafeArea(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5.0),
+          child: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(30.0),
-                bottomLeft: Radius.circular(30.0),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(30.0)),
+                color: Theme.of(context).colorScheme.background),
+            height: double.infinity,
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 20),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Quiz(questions: generateQuiz(listData))),
+                        )
+                      },
+                      child: Card(
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 30, horizontal: 30),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const Image(
+                                  image: const AssetImage(
+                                      'assets/icons/open-book.png')),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Τέστ Υπουργείου',
+                                    style:
+                                        Theme.of(context).textTheme.headline5,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: const [
+                                          Icon(Icons.timer),
+                                          Text(': 30 λεπτά')
+                                        ],
+                                      ),
+                                      Row(
+                                        children: const [
+                                          Icon(Icons
+                                              .assignment_turned_in_outlined),
+                                          Text(' : 30 ερωτήσεις')
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  Text(
+                    'Κατηγορίες',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 200,
+                    child: ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        CategoryCard(),
+                        const SizedBox(width: 20),
+                        CategoryCard(),
+                        const SizedBox(width: 20),
+                        CategoryCard()
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 60),
+                  FlutterLogo(
+                    size: 80,
+                  ),
+                  const SizedBox(height: 20),
+                  const Text('Created using Flutter!')
+                ],
               ),
             ),
-            width: 280,
-            height: 200,
-            padding: const EdgeInsets.all(18),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.menu_book_sharp,
-                  size: 60,
-                  color: Theme.of(context).backgroundColor,
-                ),
-                ElevatedButton(
-                  child: const Text('Open route'),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Quiz(questions: generateQuiz(listData))),
-                    );
-                  },
-                ),
-              ],
-            ),
-          )
-        ],
-      )),
+          ),
+        ),
+      ),
     );
   }
 }

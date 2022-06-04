@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_driving_quiz/components/radioBtns.dart';
 import '../models/data.dart';
 import '../components/questionCard.dart';
 import '../components/timer.dart';
@@ -15,7 +16,7 @@ class _QuizState extends State<Quiz> {
   //Variables
   final int _totalQuestions = 30;
   int _questionIndex = 0;
-  List answerCatalog = [];
+  Map<Question, bool> answerCatalog = {};
 
   //int value = 0;
 
@@ -23,7 +24,7 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Route'),
+        title: const Text('Τέστ Υπουργείου'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,8 +90,15 @@ class _QuizState extends State<Quiz> {
                                   BorderRadius.all(Radius.circular(0))),
                         ),
                         onPressed: () {
-                          widget.questions
-                              .remove(widget.questions[_questionIndex]);
+                          if (currentAnswer != "0") {
+                            answerCatalog[widget.questions[_questionIndex]] =
+                                widget.questions[_questionIndex]
+                                    .checkIfTrue(currentAnswer);
+                            widget.questions
+                                .remove(widget.questions[_questionIndex]);
+                            currentAnswer = "0";
+                            print(answerCatalog);
+                          }
                           setState(() {});
                         },
                       ),

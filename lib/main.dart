@@ -192,9 +192,9 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 40),
                   const FlutterLogo(
-                    size: 80,
+                    size: 70,
                   ),
                   const SizedBox(height: 20),
                   const Text('Created using Flutter!')

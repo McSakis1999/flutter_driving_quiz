@@ -6,7 +6,7 @@ import '../components/questionCard.dart';
 import '../components/timer.dart';
 
 class Quiz extends StatefulWidget {
-  List questions = [];
+  List<Question> questions = [];
   Quiz({Key? key, required this.questions}) : super(key: key);
 
   @override
@@ -133,7 +133,8 @@ class _QuizState extends State<Quiz> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ResultPage()),
+                                  builder: (context) =>
+                                      ResultPage(results: answerCatalog)),
                             );
                           },
                         ),

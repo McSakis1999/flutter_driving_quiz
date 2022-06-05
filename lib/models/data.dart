@@ -92,6 +92,13 @@ class Question {
     }
     return false;
   }
+
+  String getRightAnswer() {
+    for (Answer answer in this.answers) {
+      if (answer.A_isTrue == true) return answer.A_text;
+    }
+    return '';
+  }
 }
 
 final Map<String, String> _categories = {

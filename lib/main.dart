@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_driving_quiz/components/categoryInkwell.dart';
-import 'package:flutter_driving_quiz/components/radioBtns.dart';
 import 'package:flutter_driving_quiz/models/data.dart';
 import 'package:flutter_driving_quiz/theme/themeConstants.dart';
 import 'package:flutter_driving_quiz/theme/themeManager.dart';
@@ -57,6 +56,19 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
+}
+
+List<Widget> createCategoryListTiles(
+    List<List<Question>> dataList, Map<String, String> imagePathMap) {
+  List<Widget> _tileList = [];
+  for (List<Question> list in dataList) {
+    if (list[0] != null)
+      _tileList.add(CategoryCard(
+          imagePath: imagePathMap[list[0].Raw_category]!,
+          categoryTitle: list[0].Q_category!,
+          data: list));
+  }
+  return _tileList;
 }
 
 class _HomePageState extends State<HomePage> {
@@ -184,11 +196,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       scrollDirection: Axis.horizontal,
                       children: [
-                        CategoryCard(),
-                        const SizedBox(width: 20),
-                        CategoryCard(),
-                        const SizedBox(width: 20),
-                        CategoryCard()
+                        ...createCategoryListTiles(listData, categoriesImages)
                       ],
                     ),
                   ),

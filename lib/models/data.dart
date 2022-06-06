@@ -63,7 +63,7 @@ class Question {
     return id;
   }
 
-  List get Q_answers {
+  List<Answer> get Q_answers {
     return answers;
   }
 
@@ -126,6 +126,15 @@ final Map<String, String> _categories = {
   "21": "ΣΥΝΤΗΡΗΣΗ ΚΑΙ ΕΠΙΣΚΕΥΗ",
   "22": "ΟΙ ΕΚΤΑΚΤΕΣ ΚΑΤΑΣΤΑΣΕΙΣ",
   "23": "ΠΡΟΣΤΑΣΙΑ ΠΕΡΙΒΑΛΛΟΝΤΟΣ - ΕΞΟΙΚΟΝΟΜΗΣΗ ΕΝΕΡΓΕΙΑΣ",
+};
+
+final Map<String, String> categoriesImages = {
+  "1": "assets/carIcons/026-car pedals.png",
+  "2": "assets/carIcons/040-steering wheel.png",
+  "3": "assets/carIcons/023-forbidden.png",
+  "4": "assets/carIcons/005-traffic light.png",
+  "5": "assets/carIcons/006-speedometer.png",
+  "6": "assets/carIcons/017-road.png",
 };
 // Question('2', true, '', [Answer('', false), Answer('', false), Answer('', false)]),
 

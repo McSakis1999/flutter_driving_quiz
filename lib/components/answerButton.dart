@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
-int isSelected = -100;
+import 'questionCard.dart';
+import 'answerBtns.dart';
+import '../screens/cat_quiz_template.dart';
 
 class AnswerBtn extends StatefulWidget {
-  AnswerBtn(this.answerText, this.index);
+  AnswerBtn(this.answerText, this.isTrue, this.answerTapped);
   final String answerText;
-  final int index;
-
+  final bool isTrue;
+  final VoidCallback answerTapped;
   @override
   State<AnswerBtn> createState() => _AnswerBtnState();
 }
@@ -15,29 +16,27 @@ class _AnswerBtnState extends State<AnswerBtn> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {
-        setState(() {
-          isSelected = widget.index;
-        })
-      },
+      onTap: widget.answerTapped,
       child: Container(
         padding: const EdgeInsets.all(15.0),
         margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: isSelected
+              ? widget.isTrue
+                  ? Colors.green
+                  : Colors.red
+              : Theme.of(context).colorScheme.background,
           border: Border.all(
-            color: isSelected == widget.index
-                ? Colors.orange
-                : Theme.of(context).colorScheme.outline,
+            color: Theme.of(context).colorScheme.outline,
           ),
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Text(
           widget.answerText,
           style: const TextStyle(
-            fontSize: 15.0,
-          ),
+              //fontSize: 15.0,
+              ),
         ),
       ),
     );

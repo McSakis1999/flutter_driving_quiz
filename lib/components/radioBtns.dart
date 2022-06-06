@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../models/data.dart';
 
 String currentAnswer = "0"; // kano to id string giati exei thema
 
 class RadioBtns extends StatefulWidget {
   RadioBtns(this.answers);
-  List answers;
+  List<Answer> answers;
   @override
   State<RadioBtns> createState() => _RadioBtnsState();
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_driving_quiz/components/radioBtns.dart';
 import 'package:flutter_driving_quiz/models/data.dart';
+import 'answerBtns.dart';
 
 class QuestionCard extends StatefulWidget {
-  QuestionCard(this.question, this.questionIndex);
+  QuestionCard(this.question, this.radioFlag);
+  bool radioFlag;
   Question question;
-  int questionIndex;
+
   @override
   State<QuestionCard> createState() => _QuestionCardState();
 }
@@ -46,7 +48,10 @@ class _QuestionCardState extends State<QuestionCard> {
             ],
           ),
           const SizedBox(height: 10),
-          RadioBtns(widget.question.Q_answers)
+
+          widget.radioFlag
+              ? RadioBtns(widget.question.Q_answers)
+              : buttonGroup(answers: widget.question.Q_answers)
           //radiobtns
         ],
       ),

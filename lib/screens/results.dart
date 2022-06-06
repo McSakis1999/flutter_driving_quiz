@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_driving_quiz/main.dart';
 import '../models/data.dart';
 
+// mporei na givei staless
 class ResultPage extends StatefulWidget {
   Map<Question, bool> results = {};
   String success = "Επιτυχία!";

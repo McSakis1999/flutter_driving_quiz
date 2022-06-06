@@ -38,7 +38,7 @@ class _QuizState extends State<Quiz> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    timer(),
+                    const timer(),
                     Row(
                       children: [
                         const Icon(Icons.assignment_turned_in_outlined),
@@ -50,7 +50,7 @@ class _QuizState extends State<Quiz> {
                 ) /* time & num of questions */,
                 const SizedBox(height: 15),
                 // card
-                QuestionCard(widget.questions[_questionIndex], _questionIndex)
+                QuestionCard(widget.questions[_questionIndex], true)
               ],
             ),
             Column(
@@ -102,6 +102,15 @@ class _QuizState extends State<Quiz> {
                               widget.questions
                                   .remove(widget.questions[_questionIndex]);
                               currentAnswer = "0";
+                            } else {
+                              final snackBar = SnackBar(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.primary,
+                                  duration: const Duration(milliseconds: 1500),
+                                  content: const Text(
+                                      'Παρακαλώ επιλέξτε μια απάντηση!'));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             }
                             setState(() {});
                           },

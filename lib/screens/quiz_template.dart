@@ -5,6 +5,8 @@ import '../models/data.dart';
 import '../components/questionCard.dart';
 import '../components/timer.dart';
 
+Map<Question, bool> answerCatalog = {};
+
 class Quiz extends StatefulWidget {
   List<Question> questions = [];
   Quiz({Key? key, required this.questions}) : super(key: key);
@@ -14,10 +16,15 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  @override
+  void initState() {
+    answerCatalog = {};
+    super.initState();
+  }
+
   //Variables
   final int _totalQuestions = 30;
   int _questionIndex = 0;
-  Map<Question, bool> answerCatalog = {};
 
   //int value = 0;
 
@@ -34,21 +41,25 @@ class _QuizState extends State<Quiz> {
           children: [
             Column(
               children: [
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Column(
                   children: [
-                    const timer(),
+                    const SizedBox(height: 15),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Icon(Icons.assignment_turned_in_outlined),
-                        Text(
-                            "  ${_totalQuestions - answerCatalog.length}/${_totalQuestions}")
+                        const timer(),
+                        Row(
+                          children: [
+                            const Icon(Icons.assignment_turned_in_outlined),
+                            Text(
+                                "  ${_totalQuestions - answerCatalog.length}/${_totalQuestions}")
+                          ],
+                        ),
                       ],
-                    ),
+                    ) /* time & num of questions */,
+                    const SizedBox(height: 15),
                   ],
-                ) /* time & num of questions */,
-                const SizedBox(height: 15),
+                ),
                 // card
                 QuestionCard(widget.questions[_questionIndex], true)
               ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../screens/results.dart';
+import '../screens/quiz_template.dart';
 
 class timer extends StatefulWidget {
   const timer({Key? key}) : super(key: key);
@@ -9,7 +11,7 @@ class timer extends StatefulWidget {
 }
 
 class _timerState extends State<timer> {
-  int _seconds = 1800;
+  int _seconds = 1800; //1800
   Timer? timer;
   final _secondsFormated = <int, String>{
     0: "00",
@@ -25,13 +27,22 @@ class _timerState extends State<timer> {
   };
 
   void startTimer() {
+    bool _endFlag = false;
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (_) {
         if (_seconds > 0) {
           if (mounted) setState(() => _seconds--);
         } else {
-          //telos quiz
+          if (_endFlag == false) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ResultPage(results: answerCatalog)),
+            );
+            print('1');
+            _endFlag = true;
+          }
         }
       },
     );

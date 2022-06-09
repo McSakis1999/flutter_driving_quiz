@@ -85,16 +85,16 @@ class Question {
     this.answers = answers;
   }
   bool checkIfTrue(String answer_id) {
-    for (Answer answer in this.answers) {
+    for (Answer answer in answers) {
       if (answer.A_id.toString() == answer_id) {
-        return answer.A_isTrue ?? false;
+        return answer.A_isTrue; //answer.A_isTrue ?? false
       }
     }
     return false;
   }
 
   String getRightAnswer() {
-    for (Answer answer in this.answers) {
+    for (Answer answer in answers) {
       if (answer.A_isTrue == true) return answer.A_text;
     }
     return '';

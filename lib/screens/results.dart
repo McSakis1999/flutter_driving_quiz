@@ -22,12 +22,12 @@ List<Widget> createListTiles(Map map) {
   return _tileList;
 }
 
-int getTotalFalseAnswers(Map map) {
-  int _totalFalse = 0;
+int getTotalCorrectAnswers(Map map) {
+  int _totalCorrect = 0;
   map.values.forEach((value) {
-    if (value == false) _totalFalse++;
+    if (value == true) _totalCorrect++;
   });
-  return _totalFalse;
+  return _totalCorrect;
 }
 
 class _ResultPageState extends State<ResultPage> {
@@ -54,13 +54,13 @@ class _ResultPageState extends State<ResultPage> {
             ),
             const SizedBox(height: 5),
             Text(
-              "${getTotalFalseAnswers(widget.results) > 1 ? widget.fail : widget.success}",
+              "${getTotalCorrectAnswers(widget.results) >= 29 ? widget.success : widget.fail}",
               style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w600,
-                  color: getTotalFalseAnswers(widget.results) > 1
-                      ? Colors.red
-                      : Colors.green),
+                  color: getTotalCorrectAnswers(widget.results) >= 29
+                      ? Colors.green
+                      : Colors.red),
             ),
             const SizedBox(height: 15),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -69,8 +69,7 @@ class _ResultPageState extends State<ResultPage> {
                   Icons.check_circle_outline_rounded,
                   color: Colors.green,
                 ),
-                Text(
-                    " : ${widget.results.length - getTotalFalseAnswers(widget.results)}")
+                Text(" : ${getTotalCorrectAnswers(widget.results)}")
               ]),
               Row(
                 children: [
@@ -78,16 +77,25 @@ class _ResultPageState extends State<ResultPage> {
                     Icons.clear,
                     color: Colors.red,
                   ),
-                  Text(" : ${getTotalFalseAnswers(widget.results)}")
+                  Text(" : ${30 - getTotalCorrectAnswers(widget.results)}")
                 ],
               )
             ]),
             const SizedBox(height: 20),
-            Expanded(
-              child: ListView(
-                children: [...createListTiles(widget.results)],
+            if (widget.results.length != 0)
+              Expanded(
+                child: ListView(
+                  children: [...createListTiles(widget.results)],
+                ),
               ),
-            ),
+            if (widget.results.length == 0)
+              const Expanded(
+                  flex: 2,
+                  child: Icon(
+                    Icons.timer_off_outlined,
+                    size: 120,
+                    color: Color.fromARGB(255, 202, 201, 201),
+                  ))
           ],
         ),
       ),

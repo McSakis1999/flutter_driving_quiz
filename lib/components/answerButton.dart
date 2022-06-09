@@ -18,8 +18,8 @@ class _AnswerBtnState extends State<AnswerBtn> {
     return InkWell(
       onTap: widget.answerTapped,
       child: Container(
-        padding: const EdgeInsets.all(15.0),
-        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+        padding: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
         width: double.infinity,
         decoration: BoxDecoration(
           color: isSelected

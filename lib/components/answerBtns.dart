@@ -14,8 +14,8 @@ class buttonGroup extends StatefulWidget {
 class _buttonGroupState extends State<buttonGroup> {
   void questionAnswered(bool questionIsTrue) {
     setState(() {
+      if (!isSelected) questionIsTrue ? correctCatAnswers++ : falseCatAnswers++;
       isSelected = true;
-      questionIsTrue ? correctCatAnswers++ : falseCatAnswers++;
     });
   }
 

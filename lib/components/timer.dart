@@ -40,7 +40,6 @@ class _timerState extends State<timer> {
               MaterialPageRoute(
                   builder: (context) => ResultPage(results: answerCatalog)),
             );
-            print('1');
             _endFlag = true;
           }
         }

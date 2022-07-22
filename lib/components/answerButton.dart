@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'questionCard.dart';
-import 'answerBtns.dart';
 import '../screens/cat_quiz_template.dart';
 
 class AnswerBtn extends StatefulWidget {

@@ -72,7 +72,7 @@ class _QuizState extends State<Quiz> {
                     if (widget.questions.length > 1) ...[
                       Expanded(
                         child: OutlinedButton(
-                          child: const Text('Skip'),
+                          child: const Text('Προσπέραση'),
                           style: OutlinedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 40),
@@ -94,7 +94,7 @@ class _QuizState extends State<Quiz> {
                       ),
                       Expanded(
                         child: OutlinedButton(
-                          child: const Text('Submit'),
+                          child: const Text('Επιβεβαίωση'),
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 40),
@@ -130,7 +130,7 @@ class _QuizState extends State<Quiz> {
                     ] else if (widget.questions.length == 1) ...[
                       Expanded(
                         child: OutlinedButton(
-                          child: const Text('Submit'),
+                          child: const Text('Επιβεβαίωση'),
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 40),

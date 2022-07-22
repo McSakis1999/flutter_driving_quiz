@@ -8,7 +8,7 @@ import 'theme/themeConstants.dart';
 import 'theme/themeManager.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 ThemeManager _themeManager = ThemeManager();
@@ -42,11 +42,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeManager.themeMode,
       title: 'Σήματα Οδήγησης',
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
@@ -139,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                                       Theme.of(context).colorScheme.background,
                                   padding: const EdgeInsets.all(15),
                                   child: const Image(
-                                    image: const AssetImage(
+                                    image: AssetImage(
                                         'assets/carIcons/021-manual book.png'),
                                     height: 70,
                                   ),
@@ -148,35 +149,48 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Τέστ Υπουργείου',
-                                    style:
-                                        Theme.of(context).textTheme.headline5,
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: const [
-                                          Icon(Icons.timer),
-                                          Text(': 30 λεπτά')
-                                        ],
+                              ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 700),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Τέστ Υπουργείου',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
                                       ),
-                                      Row(
-                                        children: const [
-                                          Icon(Icons
-                                              .assignment_turned_in_outlined),
-                                          Text(' : 30 ερωτήσεις')
+                                      const SizedBox(height: 10),
+                                      Wrap(
+                                        runSpacing: 8.0,
+                                        spacing: 25.0,
+                                        children: [
+                                          FittedBox(
+                                            child: Row(
+                                              children: const [
+                                                Icon(Icons.timer),
+                                                Text(': 30 λεπτά')
+                                              ],
+                                            ),
+                                          ),
+                                          FittedBox(
+                                            child: Row(
+                                              children: const [
+                                                Icon(Icons
+                                                    .assignment_turned_in_outlined),
+                                                Text(' : 30 ερωτήσεις')
+                                              ],
+                                            ),
+                                          )
                                         ],
                                       )
                                     ],
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -205,7 +219,8 @@ class _HomePageState extends State<HomePage> {
                     size: 70,
                   ),
                   const SizedBox(height: 20),
-                  const Text('Created using Flutter!')
+                  const Text('Created using Flutter!'),
+                  const SizedBox(height: 20)
                 ],
               ),
             ),

@@ -12,7 +12,7 @@
 
 📋 Performance Tracking: Καταγράφετε την πρόοδό σας με λεπτομερείς μετρήσεις απόδοσης μετά από κάθε συνεδρία εξάσκησης. Αναγνωρίστε τους τομείς που χρειάζονται βελτίωση και επικεντρωθείτε στη βελτίωση των δεξιοτήτων σας.
 
-![Screenshot_2023-08-07-13-26-10-458_com example flutter_driving_quiz-edit](https://github.com/McSakis1999/flutter_driving_quiz/assets/58091482/c74e208d-6e6d-460f-9a1d-3c651727e843)
+![Screenshot_2023-08-07-13-26-10-458_com example flutter_driving_quiz-edit](https://github.com/McSakis1999/flutter_driving_quiz/assets/58091482/c74e208d-6e6d-460f-9a1d-3c651727e843 =250x250)
 ![IMG_20230807_132151](https://github.com/McSakis1999/flutter_driving_quiz/assets/58091482/514e88d2-96f0-4265-b430-30fa3b179e1e)
 ![IMG_20230807_132134](https://github.com/McSakis1999/flutter_driving_quiz/assets/58091482/8575d25b-99b1-4b41-afbc-86a44e54df41)
 ![Screenshot_2023-08-07-13-26-10-458_com example flutter_driving_quiz-edit](https://github.com/McSakis1999/flutter_driving_quiz/assets/58091482/a19d1adf-4a00-4ff0-a3ce-ba422a2f23be)
